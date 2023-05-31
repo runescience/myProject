@@ -1,0 +1,49 @@
+!mysql
+mysql -uroot -p
+e:
+cd "My Desktop\code\myProject"
+dir
+php artisan make:migration create_posts_table -create="posts"
+php artisan make:migration create_posts_table --create="posts"
+php artisan migrate
+php artisan migrate:rollback
+history
+doskey /history
+doskey /history > typed.txt
+
+
+cd "My Desktop\code\myProject"
+dir
+php artisan make:migration create_posts_table -create="posts"
+php artisan make:migration create_posts_table --create="posts"
+php artisan migrate
+php artisan migrate:rollback
+history
+doskey /history
+doskey /history > typed.txt
+cat typed.txt
+cat
+type typed.txt
+doskey -?
+doskey /?
+doskey /macros:all
+doskey /history
+php artisan make:migration add_admin_column_to_posts_table --table="posts"
+php migrate artisan
+php artisan make:migration add_admin_column_to_posts_table --table="posts"
+
+php migrate artisan
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate
+php artisan migrate:reset
+php artisan migrate
+
+php artisan migrate:refersh
+php artisan migrate:refresh
+php artisan migrate:status
+php artisan migrate:reset
+php artisan migrate:status
+php artisan migrate
+history
+doskey /history

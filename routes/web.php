@@ -1,13 +1,89 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+*/
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| data base raw sql query
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::get('/read', function () {
+
+    $results = DB::select('select * from posts where id = ?', [1]);
+
+    //return gettype($results);
+
+    foreach ($results as $post) {
+            return $post->title;
+    }
+    return "no data";
+
+});
+
+
+Route::get('/read/{id}', function ($id) {
+
+
+    $results = DB::select('select * from posts where id = ?', [$id]);
+
+    if (empty($results)) {
+        return "no data";
+    }
+    else {
+        foreach ($results as $post) {
+            return $post->title;
+        }
+    }
+
+
+});
+
+
+// Route::get('/insert', function () {
+
+//     DB::insert('insert into posts(title, content) values(?,?)',
+//         ['PHP with Laravel',
+//         'Laravel is the best thing that has happened to PHP']);
+//     return "appended value";
+// });
+
+
+/*
+|--------------------------------------------------------------------------
+| Route::get('/insert',
+|--------------------------------------------------------------------------
+|
+*/
+
+// Route::get('/insert', function () {
+
+//     DB::insert('insert into posts(title, content) values(?,?)',
+//         ['PHP with Laravel',
+//         'Laravel is the best thing that has happened to PHP']);
+//     return "appended value";
+// });
+
+
+/*
+|--------------------------------------------------------------------------
+| post/id/name/password, contact, hazard, planet, ship, universe
+|--------------------------------------------------------------------------
+|
+*/
 
 Route::get('/post/{id}/{name}/{password}', 'PostsController@show_post');
-
 Route::get('/contact', 'PostsController@contact');
-
 
 Route::get('/hazard/{id}/{name}', 'UniverseController@hazard');
 Route::get('/planet/{id}/{name}', 'UniverseController@planet');
