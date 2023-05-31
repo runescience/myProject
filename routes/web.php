@@ -8,6 +8,9 @@ Route::get('/post/{id}/{name}/{password}', 'PostsController@show_post');
 
 Route::get('/contact', 'PostsController@contact');
 
+// Edwin? Why is <?php not terminated in this file? should it be??
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,15 +31,15 @@ Route::get('/contact', 'PostsController@contact');
 
 //This gives us a view
 /* Route::get('/', function () {
-**     return view('welcome');  
+**     return view('welcome');
 ** });
  */
 
 // Route::get('/post/data', 'PostsController@index', function($data);
 
 // Route::get('/admin/posts', function () {
-//     return 'admin is here';   
-    
+//     return 'admin is here';
+
 // });
 
 // Route::get('/hello-world', function () {
@@ -46,31 +49,31 @@ Route::get('/contact', 'PostsController@contact');
 
 // Route::get('/about', function () {
 //     return 'hi about page';   /* this gives us a view */
-    
+
 // });
 
 // Route::get('/contacts', function () {
 //     return ' hi contacts page';   /* this gives us a view */
-    
+
 // });
 
 //  /* the id value is cached. its a closure function*/
 
-// Route::get('/post/{id}/{name}', function ($id,$name)  { 
-//     return "this is post transaction number " . $id . " " . $name; 
+// Route::get('/post/{id}/{name}', function ($id,$name)  {
+//     return "this is post transaction number " . $id . " " . $name;
 // });
 
-// Route::get('/posts/{id}/{name}', function ($id,$name)  { 
-//     return "this is the post  number " . $id . " " . $name;     
+// Route::get('/posts/{id}/{name}', function ($id,$name)  {
+//     return "this is the post  number " . $id . " " . $name;
 // });
 
-// Route::get('/barkie/{id}/{name}', function ($id,$name)  { 
-//     return "this is the raven number " . $id . " " . $name;     
+// Route::get('/barkie/{id}/{name}', function ($id,$name)  {
+//     return "this is the raven number " . $id . " " . $name;
 // });
 
 
-// Route::get('/raven/{id}', function ($id)  { 
-//     return "this is the raven number " . $id; 
+// Route::get('/raven/{id}', function ($id)  {
+//     return "this is the raven number " . $id;
 // });
 
 // Route::get('admin/posts/example', array('as'=>'admin.home', function(){
