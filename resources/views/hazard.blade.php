@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>hazard Page {{$id}} {{$name}} {{$password}}</h1>
+    <h1>hazard Page {{$id}} {{$name}}</h1>
 @stop
 
 

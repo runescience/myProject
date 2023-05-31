@@ -81,4 +81,32 @@ class UniverseController extends Controller
     {
         //
     }
+
+
+    public function contact($id, $name, $password)
+    {
+
+        return view('hazard', compact('id', 'name'));
+    }
+
+    public function planet($id, $name, $password)
+    {
+
+        return view('ship', compact('id', 'name'));
+    }
+
+    public function show_post($id, $name, $password)
+    {
+
+        return view('post', compact('id', 'name'));
+    }
+
+    public function universe($id, $name, $password)
+    {
+
+        return view('post', compact('id', 'name'));
+    }
+
+
+
 }

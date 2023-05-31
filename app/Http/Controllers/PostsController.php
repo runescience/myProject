@@ -26,14 +26,11 @@ class PostsController extends Controller
         return view('contact');
     }
 
-
     public function show_post($id, $name, $password)
     {
 
         return view('post', compact('id', 'name', 'password'));
     }
-
-
 
     public function index($id)
     {

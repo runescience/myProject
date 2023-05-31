@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Universe page {{$id}} {{$name}} {{$password}}</h1>
+    <h1>Universe page {{$id}} {{$name}}</h1>
 @stop
 
 

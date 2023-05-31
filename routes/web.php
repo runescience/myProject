@@ -8,6 +8,12 @@ Route::get('/post/{id}/{name}/{password}', 'PostsController@show_post');
 
 Route::get('/contact', 'PostsController@contact');
 
+
+Route::get('/hazard/{id}/{name}', 'UniverseController@hazard');
+Route::get('/planet/{id}/{name}', 'UniverseController@planet');
+Route::get('/ship/{id}/{name}', 'UniverseController@ship');
+Route::get('/universe/{id}/{name}', 'UniverseController@universe');
+
 // Edwin? Why is <?php not terminated in this file? should it be??
 
 
