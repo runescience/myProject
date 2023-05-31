@@ -10,6 +10,31 @@ use App\Http\Controllers\PostsController;
 */
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+/*
+|--------------------------------------------------------------------------
+| data base raw sql query
+|--------------------------------------------------------------------------
+|
+*/
+
+
+
+Route::get('/delete/{id}', function ($id) {
+
+
+    $results = DB::delete('delete from posts where id = ?', [$id]);
+
+    if ($results == false) {
+        return "no data";
+    }
+    else {
+        return "deleted ". $id;
+    }
+
+
+});
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -66,13 +91,13 @@ Route::get('/read/{id}', function ($id) {
 |
 */
 
-// Route::get('/insert', function () {
+Route::get('/insert', function () {
 
-//     DB::insert('insert into posts(title, content) values(?,?)',
-//         ['PHP with Laravel',
-//         'Laravel is the best thing that has happened to PHP']);
-//     return "appended value";
-// });
+    DB::insert('insert into posts(title, content) values(?,?)',
+        ['PHP with Laravel',
+        'Laravel is the best thing that has happened to PHP']);
+    return "appended value";
+});
 
 
 /*
