@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 
 class Post extends Model
 {
@@ -18,9 +21,10 @@ class Post extends Model
 
     public $timestamps = true; // this is the time stamps of the table
 
-    // if you want to change the time stamps you can do it like this
-    // const CREATED_AT = 'creation_date';
-    // const UPDATED_AT = 'last_update';
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    protected $hidden = ['deleted_at'];
+
 
 
 

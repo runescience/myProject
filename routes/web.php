@@ -12,20 +12,60 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*--------------------------------------------------------------------------
+| ELOQUENCE restore items
+|--------------------------------------------------------------------------
+*/
+Route::get('/eloquent_restoredelete', function () {
+
+    $post = App\Post::withTrashed()->where('id', '<', 50)->restore();
+    return $post;
+});
+
+
+/*--------------------------------------------------------------------------
 | ELOQUENCE Trashing/soft delete
 |--------------------------------------------------------------------------
 */
-Route::get('/eloquentdelete-where-range', function () {
+Route::get('/eloquent_readsoftdelete', function () {
 
-    $post = App\Post::where('is_admin', 0)-> delete();
+    // $post = App\Post::find(14);
+    // return $post;
+
+    $post = App\Post::withTrashed()->get();
+    return $post;
+
+    // $post = App\Post::withTrashed()->where('id',14)->get();
+    // return $post;
+});
+/*--------------------------------------------------------------------------
+| ELOQUENCE Trashing/soft delete
+|--------------------------------------------------------------------------
+*/
+Route::get('/eloquent_softdelete', function () {
+
+    $post = App\Post::where('is_admin', 0)->delete();
     return $post;
 });
+Route::get('/softdelete', function () {
+
+    $post = App\Post::find(18)->delete();
+    return $post;
+});
+Route::get('/forcedelete', function () {
+
+    $post = App\Post::find(18)->forceDelete();
+    return $post;
+});
+Route::get('/forcedeletetrashed', function () {
+
+    $post = App\Post::onlyTrashed()->where('is_admin',0)->forceDelete();
+    return $post;
+});
+
 /*--------------------------------------------------------------------------
 | ELOQUENCE
 |--------------------------------------------------------------------------
 */
-
-
 Route::get('/eloquentdelete', function () {
     //get posts where ID == 4, order by descent id, and take 1, and then get it to me.
     $post = App\Post::find(6);
