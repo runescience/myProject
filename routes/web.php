@@ -11,6 +11,66 @@ use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+/*--------------------------------------------------------------------------
+| ELOQUENCE Trashing/soft delete
+|--------------------------------------------------------------------------
+*/
+Route::get('/eloquentdelete-where-range', function () {
+
+    $post = App\Post::where('is_admin', 0)-> delete();
+    return $post;
+});
+/*--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+*/
+
+
+Route::get('/eloquentdelete', function () {
+    //get posts where ID == 4, order by descent id, and take 1, and then get it to me.
+    $post = App\Post::find(6);
+    $post->delete();
+
+
+});
+
+Route::get('/eloquentdelete2-destroy', function () {
+
+    $post = App\Post::destroy(8,9);
+    $post = App\Post::where('is_admin', 0)-> delete();
+    return $post;
+});
+
+Route::get('/eloquentdelete-where-range', function () {
+
+    $post = App\Post::where('is_admin', 0)-> delete();
+    return $post;
+});
+
+
+
+
+/*--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+*/
+Route::get('/updatepost', function () {
+    //get posts where ID == 4, order by descent id, and take 1, and then get it to me.
+    $posts = App\Post::where('id', 5)->where('is_admin', 0)->
+    update(['title'=> 'NEW PHP TITLE', 'content'=> 'I love my php instructor Edwin Diaz']);
+
+});
+
+/*--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+*/
+Route::get('/create', function () {
+    //get posts where ID == 4, order by descent id, and take 1, and then get it to me.
+    $post= App\Post::create([
+        'title'=> 'the create method',
+        'content'=> 'WOW I\'m learning a lot with Edwin Diaz']);
+});
 
 /*--------------------------------------------------------------------------
 | ELOQUENCE
@@ -25,6 +85,7 @@ Route::get('/basicinsert', function () {
     $post->save();
     return $post; // returns the whole row.
 });
+
 /*--------------------------------------------------------------------------
 | ELOQUENCE
 |--------------------------------------------------------------------------
