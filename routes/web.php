@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
+
+use App\User;
+use App\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +15,17 @@ use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+/*--------------------------------------------------------------------------
+| ELOQUENCE relationships
+|--------------------------------------------------------------------------
+*/
+Route::get('/user/{id}/post', function ($id) {  //eloquent
+
+    // or: return User::find($id)->post->title;
+    $post = App\User::find($id)->post;
+
+    return $post;
+});
 /*--------------------------------------------------------------------------
 | ELOQUENCE restore items
 |--------------------------------------------------------------------------
