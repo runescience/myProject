@@ -10,15 +10,107 @@ use App\Http\Controllers\PostsController;
 */
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
+
+/*--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+*/
+Route::get('/basicinsert', function () {
+
+    //get posts where ID == 4, order by descent id, and take 1, and then get it to me.
+    $post= new App\Post;
+    $post->title = 'New Eloquent title insert';
+    $post->content = 'Wow eloquent is really cool, look at this content';
+    $post->save();
+    return $post; // returns the whole row.
+});
+/*--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+*/
+Route::get('/basicupdate', function () {
+
+
+    $post= App\Post::find(4);
+    $post->title = 'Mystery replacement of #4';
+    $post->content = 'Read how the 4th record was replaced Mysteriously';
+    $post->save();
+    return $post; // returns the whole row.
+});
+
+/*--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+*/
+Route::get('/findwhere', function () {
+
+    //get posts where ID == 4, order by descent id, and take 1, and then get it to me.
+    $posts = App\Post::where('id', 4)->orderBy('id', 'desc')->take(1)->get();
+    return $posts; // returns the whole row.
+});
+
+
+Route::get('/findmore', function () {
+
+    //get posts where ID == 4, order by descent id, and take 1, and then get it to me.
+
+    $posts = App\Post::findOrFail(4); // if it doesnt find it, it will return a 404 error
+    return $posts; // returns the whole row.
+
+});
+Route::get('/findmore2', function () {
+    $posts = App\Post::where('users_count', '<', 50)->firstOrFail(); // if it doesnt find it, it will return a 404 error
+    return $posts; // returns the whole row.
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/find', function () {
+
+    //backslace  is namespace: App is the folder. Post is the class
+    // or you can go to the top and type
+    //    namespace App;
+    //   instead of use App\Post;
+    $posts = App\Post::all();
+
+    // $posts contains ALL items in the post table
+    foreach ($posts as $post) {
+        return $post->title;
+    }
+});
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENCE
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/find2', function () {
+
+    //backslace  is namespace: App is the folder. Post is the class
+    // or you can go to the top and type
+    //    namespace App;
+    //   instead of use App\Post;
+    $post = App\Post::find(4); // 1 is the id
+
+    // $posts contains ALL items in the post table
+    return $post->title;
+
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | data base raw sql query
 |--------------------------------------------------------------------------
 |
 */
-
-
-
 Route::get('/delete/{id}', function ($id) {
 
 
@@ -29,6 +121,29 @@ Route::get('/delete/{id}', function ($id) {
     }
     else {
         return "deleted ". $id;
+    }
+
+
+});
+/*
+|--------------------------------------------------------------------------
+| data base raw sql query
+|--------------------------------------------------------------------------
+|
+*/
+
+
+
+Route::get('/update/{id}/{title}', function ($id,$title) {
+
+
+    $results = DB::update('update posts set title = ? where id = ?', [$title, $id]);
+
+    if ($results == false) {
+        return "no data";
+    }
+    else {
+        return "updated ". $id;
     }
 
 
@@ -78,8 +193,8 @@ Route::get('/read/{id}', function ($id) {
 // Route::get('/insert', function () {
 
 //     DB::insert('insert into posts(title, content) values(?,?)',
-//         ['PHP with Laravel',
-//         'Laravel is the best thing that has happened to PHP']);
+//         ['Laravel is awesome with Edwin',
+//         'Laravel is the best thing that has happened to PHP. Period']);
 //     return "appended value";
 // });
 
@@ -94,8 +209,8 @@ Route::get('/read/{id}', function ($id) {
 Route::get('/insert', function () {
 
     DB::insert('insert into posts(title, content) values(?,?)',
-        ['PHP with Laravel',
-        'Laravel is the best thing that has happened to PHP']);
+        ['PHP with  Edwin',
+        'Laravel is the best thing that has happened to PHP. Period']);
     return "appended value";
 });
 
