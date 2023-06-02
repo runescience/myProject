@@ -15,6 +15,27 @@ use App\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+
+/*--------------------------------------------------------------------------
+| ELOQUENCE many to many relationships
+| /user/1/role
+|--------------------------------------------------------------------------
+*/Route::get('/user/{id}/role', function ($id) {
+
+
+    //$user = User::find($id);
+    // foreach ($user->roles  as $role) {
+    //     return $role->name;
+    // }
+
+    $user = User::find($id)->roles()->orderBy('id', 'desc')->get();
+    return $user;
+
+
+
+});
+
+
 /*--------------------------------------------------------------------------
 | ELOQUENCE relationships
 |--------------------------------------------------------------------------
@@ -23,9 +44,9 @@ Route::get('/user/{id}/post', function ($id) {  //eloquent
 
     // or: return User::find($id)->post->title;
     $post = App\User::find($id)->post;
-
     return $post;
 });
+
 /*--------------------------------------------------------------------------
 | ELOQUENCE restore items
 |--------------------------------------------------------------------------

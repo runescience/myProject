@@ -39,8 +39,23 @@ class User extends Authenticatable
 
     public function post(){
         return $this->hasOne('App\Post');  // by default it will look for user_id
+    }
+
+    public function posts(){
+        return $this->hasMany('App\Post');  // by default it will look for user_id
+    }
+
+    public function roles(){
+        return $this->belongsToMany('App\Role');
+
+        // by default it will look for user_id
+        // return $this->belongsToMany('App\Role', 'user_roles', 'user_id', 'role_id');
+
+
 
     }
+
+
 
 }
 
